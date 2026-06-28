@@ -1,0 +1,76 @@
+# Global paths
+paths:
+  trainset: ".../dev_test/*single.json" 
+  paramsdir: ".../cam_files/" 
+  frames_cache: ".../frames_0.pt"
+
+# Networks configuration
+network:
+  star_topology: true 
+  use_3D_features: false
+  model_pth: "./model_weights.pth" 
+  hidden_channels: [2048, 1024, 1024, 512, 512, 128]
+  joint_list: [0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  
+  model_type: "GATNetwork"
+  # model_type: "RGCNetwork"
+  # model_type: "GCNerwork"
+
+  # GATNetwork
+  heads: [24, 24, 24, 16, 16, 12, 1]
+  concat: false
+  
+  # RGCNetwork
+  num_relations: 2
+  num_bases: None
+  
+  # GCNetwork
+  improved: false
+
+
+# Training hyperparameters
+training_params:
+  epochs: 10000
+  batch_size: 64
+  lr: 0.0001        
+  val_split: 0.2
+  validation_interval: 1  
+  pacience: 20
+
+  real_cameras:
+    - "hd_00_03"
+    - "hd_00_06"
+    - "hd_00_12"
+    - "hd_00_13"
+    - "hd_00_23"
+
+# Execution Flags (Script Behavior)
+execution:
+  training: true 
+  load_frames: true 
+
+# Visualization scripts parameters (2D and 3D)
+visualizaion:
+  width: 1920
+  height: 1080
+  plot_period: 100 # miliseconds
+  data_step: 1   
+  camera_colours:
+    hd_00_03: [255, 0, 0] 
+    hd_00_06: [0, 255, 0] 
+    hd_00_12: [0, 0, 255]
+    hd_00_13: [127, 127, 0] 
+    hd_00_23: [0, 127, 127]
+  axes_3D:
+    X: [0, 1.0]
+    Y: [2, 1.0]
+    Z: [1, -1.0]
+
+testing:
+  test_cam_list:
+    - "vga_19_01"
+    - "vga_19_02"
+    - "vga_19_03"
+    - "vga_19_04"
+    - "vga_19_05"
+    - "vga_19_06"
